@@ -1,0 +1,60 @@
+<?xml version = "1.0" encoding = "UTF-8" ?>
+<!--  SWOS Competition Changer v.0.2.0b -->
+<!--  Author: AnoXic -->
+
+<Nation>
+  <TeamNo>28</TeamNo>
+  <League>
+    <BeginMonth>8</BeginMonth>
+    <EndMonth>5</EndMonth>
+    <Divisions>2</Divisions>
+    <Rounds>2</Rounds>
+    <PtsForWin>3</PtsForWin>
+    <Substitutes>3</Substitutes>
+    <Bench>5</Bench>
+    <Division>
+      <Teams>16</Teams>
+      <Promoted>0</Promoted>
+      <PromPlayOff>0</PromPlayOff>
+      <Relegated>3</Relegated>
+      <RelPlayOff>0</RelPlayOff>
+    </Division>
+    <Division>
+      <Teams>18</Teams>
+      <Promoted>3</Promoted>
+      <PromPlayOff>0</PromPlayOff>
+      <Relegated>3</Relegated>
+      <RelPlayOff>0</RelPlayOff>
+    </Division>
+    <!-- 
+      If add more leagues change Divisions above and add definition below...
+      Play-Off for Promotion and Relegations not supported yet
+    <Division>
+    </Division>
+    -->
+  </League>
+  <Cup>
+    <BeginMonth>10</BeginMonth>
+    <EndMonth>5</EndMonth>
+    <Teams>32</Teams>
+    <AwayGoals>0</AwayGoals>
+    <Substitutes>3</Substitutes>
+    <Bench>5</Bench>
+    <FirstRoundNo>3</FirstRoundNo>
+    <Round>54</Round>
+    <Round>54</Round>
+    <Round>94</Round>
+    <Round>94</Round>
+    <Round>14</Round>
+    <!-- 
+      If add more rounds in cup change Teams above and add definition below...
+      Number in Round is SWOS data, 54 - one match with PENS/EXTRA time 94 - 2legs etc..
+    <Round>14<Round>
+    -->
+  </Cup>
+</Nation>
+<!-- 
+<Nation>
+  here add another nation competition...
+</Nation>
+-->
