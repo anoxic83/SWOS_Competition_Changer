@@ -39,3 +39,12 @@ copy compiled file winmm.dll (from bin folder) to main swos folder (where is swo
 copy plugins folder to this same directory or create directory plugins and copy file swscc.asi
 copy swscc.xml to plugins folder.
 copy TEAM.028 to DATA directory.
+
+# Change Log
+v0.2.6b
+- Update to SWOS 2020 v3.0.0
+v0.2.5b
+- Fix some errors, changes in WinMM
+- Update to SWOS 2020 v2.4.1
+v0.2.4b
+- Initial github release

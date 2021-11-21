@@ -11,11 +11,11 @@
 //const intptr_t CompStructPtr = 0x476D456;
 //const intptr_t CompStructPtr = 0x476F456;
 //const intptr_t CompStructPtr = 0x477A95A;
-const intptr_t CompStructPtr = 0x477A456;
+const intptr_t CompStructPtr = 0x4924456;
 const char* headch = "SWSCC";
 
 const char* info = R"(
-SWOS Competition Changer ver.0.2.4b
+SWOS Competition Changer ver.0.2.5b
 Author: AnoXic
 ------------------------------------
 Info: This file is plugin to SWOS.
