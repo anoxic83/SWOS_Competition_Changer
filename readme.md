@@ -20,9 +20,9 @@ Open this directory as Open Folder, select kit as Visual Studio x86 and complile
 # Files
 include/winmm/winmmmain.h - header of wrapper to winmm.dll (Loaded orginaly by SWOS)
 include/winmm/winmmmain.def - definition to windows dll file (exports)
-include/swosasi/swosexe.h - support functions to create patches.
-include/swosasi/swosgui.h - support functions and structs to create gui.
+include/swosasi/swoshook.h - support functions to create patches and finding pattern in memory.
 include/swscc/swscomp.h - header of main plugin SWOS Competition Changer
+src/swosasi/swoshook.cc - main cpp file of hook
 src/swscc/swscc.cc - dll main entry for asi plugin
 src/swscc/swscomp.cc - main cpp file of plugin SWOS Competition Changer
 src/winmm/winmmmain.cc - main cpp file of wrapper
@@ -41,6 +41,10 @@ copy swscc.xml to plugins folder.
 copy TEAM.028 to DATA directory.
 
 # Change Log
+v0.3.0b
+- Add SWOSHook API to find Competition Table address automatic
+- Update wrapper to SWOS 2020 v3.0.6
+
 v0.2.6b
 - Update to SWOS 2020 v3.0.0
 

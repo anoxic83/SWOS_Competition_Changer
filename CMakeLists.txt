@@ -22,11 +22,13 @@ set(ROOTSRC ${PROJECT_SOURCE_DIR}/src)
 set(ROOTINC ${PROJECT_SOURCE_DIR}/include)
 
 set(SWSASIINC ${PROJECT_SOURCE_DIR}/include/swosasi)
+set(SWSASISRC ${PROJECT_SOURCE_DIR}/src/swosasi)
 set(WINMMSRC ${PROJECT_SOURCE_DIR}/src/winmm)
 set(WINMMINC ${PROJECT_SOURCE_DIR}/include/winmm)
 
 set(SWSCCSRC ${PROJECT_SOURCE_DIR}/src/swscc)
 set(SWSCCINC ${PROJECT_SOURCE_DIR}/include/swscc)
+
 
 set(SWSSAVERSRC ${PROJECT_SOURCE_DIR}/src/swssaver)
 
@@ -53,7 +55,7 @@ include_directories(${WINMMINC})
 include_directories(${DEPS}/pugixml)
 
 include_directories(${SWSASIINC})
-
+include_directories(${SWSASISRC})
 
 include_directories(${SWSCCINC})
 include_directories(${SWSCCSRC})
@@ -77,6 +79,7 @@ set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_SOURCE_DIR}/plugins)
 set(SWSCCSRC_FILES
   ${SWSCCSRC}/swscc.cc
   ${SWSCCSRC}/swscomp.cc
+  ${SWSASISRC}/swoshook.cc
   ${DEPS}/pugixml/pugixml.cpp
   )
 

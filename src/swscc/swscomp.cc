@@ -1,7 +1,7 @@
 #include "swscomp.h"
 #include <cstring>
 #include <pugixml.hpp>
-#include "swosexe.h"
+#include "swoshook.h"
 
 
 
@@ -11,11 +11,11 @@
 //const intptr_t CompStructPtr = 0x476D456;
 //const intptr_t CompStructPtr = 0x476F456;
 //const intptr_t CompStructPtr = 0x477A95A;
-const intptr_t CompStructPtr = 0x4924456;
+//uintptr_t CompStructPtr = 0x4924456;
 const char* headch = "SWSCC";
 
 const char* info = R"(
-SWOS Competition Changer ver.0.2.5b
+SWOS Competition Changer ver.0.3.0b
 Author: AnoXic
 ------------------------------------
 Info: This file is plugin to SWOS.
@@ -33,6 +33,9 @@ SWSCompetitionChanger::SWSCompetitionChanger(const std::string& filename)
   m_Data.clear();
   m_Data.insert(m_Data.begin(), header.begin(), header.end());
   m_CompAddrPairs.clear();
+  
+  uintptr_t comptable;
+  //SWOSHook::ReadMemory(SWOSHook::GetCompetitionTablePtr(), &comptable, 4);
   for (pugi::xml_node natnode = doc.child("Nation"); natnode; natnode = natnode.next_sibling("Nation"))
   {
     int teamno = (std::string(natnode.child("TeamNo").child_value()) == "") ? 0 : std::stoi(natnode.child("TeamNo").child_value());
@@ -42,12 +45,12 @@ SWSCompetitionChanger::SWSCompetitionChanger(const std::string& filename)
       SWSLeagueStr tmpc = {0,0,0,0,0,0,0,0,0,0,0,0,0};
       tmpc.CompType = SWSC_LEAGUE;
       uintptr_t compaddr;     // address in comp.table
-      SWOS::ReadMemory(SWOS::GetBaseAddress()+CompStructPtr+(teamno*4), &compaddr, 4);
+      SWOSHook::ReadMemory(SWOSHook::GetCompetitionTablePtr()+(teamno*4), &compaddr, 4);
       uintptr_t lgeaddr;      // address lge
-      SWOS::ReadMemory(compaddr, &lgeaddr, 4);
+      SWOSHook::ReadMemory(compaddr, &lgeaddr, 4);
       m_CompAddrPairs.push_back(std::make_pair(compaddr, m_Data.size()));
       uint8_t compid;
-      SWOS::ReadMemory(lgeaddr, &compid, 1);
+      SWOSHook::ReadMemory(lgeaddr, &compid, 1);
       tmpc.CompID = compid;
       tmpc.NationNo = teamno;
       tmpc.StartDate = (std::string(legnode.child("BeginMonth").child_value()) == "") ? 0x20 : std::stoi(legnode.child("BeginMonth").child_value());
@@ -88,11 +91,11 @@ SWSCompetitionChanger::SWSCompetitionChanger(const std::string& filename)
       // END OF LEAGUE
       // BEGIN CUP
       uintptr_t cupaddr;
-      SWOS::ReadMemory(compaddr+8, &cupaddr, 4);
+      SWOSHook::ReadMemory(compaddr+8, &cupaddr, 4);
       if (cupaddr != 0xffffffff)
       {
         m_CompAddrPairs.push_back(std::make_pair(compaddr+8, m_Data.size()));
-        SWOS::ReadMemory(cupaddr, &compid, 1);
+        SWOSHook::ReadMemory(cupaddr, &compid, 1);
         pugi::xml_node cupnode = natnode.child("Cup");
         SWSCupStr tmpr = {0,0,0,0,0,0,0,0,0,0,0,0,0,0};
         tmpr.CompID = compid;
@@ -124,7 +127,7 @@ SWSCompetitionChanger::SWSCompetitionChanger(const std::string& filename)
   for (auto addr: m_CompAddrPairs)
   {
     uintptr_t newaddress = addr.second + reinterpret_cast<uintptr_t>(&(m_Data[0]));
-    SWOS::WriteMemory(addr.first, &newaddress, 4);
+    SWOSHook::WriteMemory(addr.first, &newaddress, 4);
   }
   std::ofstream ofs("___XTEX.DTT", std::ios::binary);
   ofs.write((char*)&m_Data[0], m_Data.size());
