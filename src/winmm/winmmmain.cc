@@ -43,15 +43,15 @@ void Init()
 	auto hwSWOS = (uintptr_t)GetModuleHandle(NULL);
 	IMAGE_DOS_HEADER*  dos = (IMAGE_DOS_HEADER*)(hwSWOS);
 	IMAGE_NT_HEADERS*  nt = (IMAGE_NT_HEADERS*)(hwSWOS + dos->e_lfanew);
-	if (nt->OptionalHeader.AddressOfEntryPoint != 0xD33B2)
+	if (nt->OptionalHeader.AddressOfEntryPoint != 0xD3912)
 	{
-    if (MessageBoxA(NULL, "Not valid version of SWOS executable\nContinue anyway?", "ASI Loader", MB_YESNO + MB_ICONASTERISK) == IDYES)
+    if (MessageBoxA(NULL, "Not valid version of SWOS executable\nContinue anyway?", "ASI Loader v0.3.1b", MB_YESNO + MB_ICONASTERISK) == IDYES)
     {
 		  LoadPlugin();
     }
 	  else
 	  {
-		  MessageBoxA(NULL, "Unsupported version of SWOS, or not SWOS-Win32-Port.", "ASI Loader", MB_ICONWARNING + MB_OK);
+		  MessageBoxA(NULL, "Unsupported version of SWOS, or not SWOS-Win32-Port.", "ASI Loader v0.3.1b", MB_ICONWARNING + MB_OK);
 	  }
   }
   else

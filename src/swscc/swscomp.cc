@@ -15,7 +15,7 @@
 const char* headch = "SWSCC";
 
 const char* info = R"(
-SWOS Competition Changer ver.0.3.0b
+SWOS Competition Changer ver.0.3.1b
 Author: AnoXic
 ------------------------------------
 Info: This file is plugin to SWOS.
