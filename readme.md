@@ -110,7 +110,7 @@ To configuration competition use swscc.xml located in plugins folder.
 ---
 # Change Log
 **v0.3.1b**
-- Update wrapper to SWOS 2020 v3.0.8
+- Update wrapper to SWOS 2020 v3.0.9
 
 **v0.3.0b**
 - Add SWOSHook API to find Competition Table address automatic
