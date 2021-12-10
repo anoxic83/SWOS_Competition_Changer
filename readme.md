@@ -45,6 +45,8 @@ Unpack 7z file and copy all files from folder swos to directory where is swos-po
 # Configuration
 To configuration competition use swscc.xml located in plugins folder.
 
+Warning! More than 2 division by nation is not supported yet.
+
 ```xml
 <?xml version = "1.0" encoding = "UTF-8" ?>
 <!--  SWOS Competition Changer v.0.3.1b -->
@@ -109,6 +111,8 @@ To configuration competition use swscc.xml located in plugins folder.
 ```
 ---
 # Change Log
+**v0.3.2b**
+- Update wrapper to SWOS 2020 v3.0.12
 **v0.3.1b**
 - Update wrapper to SWOS 2020 v3.0.9
 
