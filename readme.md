@@ -113,6 +113,7 @@ Warning! More than 2 division by nation is not supported yet.
 # Change Log
 **v0.3.2b**
 - Update wrapper to SWOS 2020 v3.0.12
+
 **v0.3.1b**
 - Update wrapper to SWOS 2020 v3.0.9
 
