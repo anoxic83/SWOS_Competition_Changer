@@ -15,7 +15,7 @@
 const char* headch = "SWSCC";
 
 const char* info = R"(
-SWOS Competition Changer ver.0.3.2b
+SWOS Competition Changer ver.0.3.3b
 Author: AnoXic
 ------------------------------------
 Info: This file is plugin to SWOS.
@@ -35,7 +35,10 @@ SWSCompetitionChanger::SWSCompetitionChanger(const std::string& filename)
   m_CompAddrPairs.clear();
   
   uintptr_t comptable;
-  //SWOSHook::ReadMemory(SWOSHook::GetCompetitionTablePtr(), &comptable, 4);
+  SWOSHook::ReadMemory(SWOSHook::GetCompetitionTablePtr(), &comptable, 4);
+  //char msgtxt[255];
+  //sprintf(msgtxt, "Competition Address Ptr: 0x%p", SWOSHook::GetCompetitionTablePtr());
+  //MessageBoxA(NULL, msgtxt, "SWSASI", MB_OK);
   for (pugi::xml_node natnode = doc.child("Nation"); natnode; natnode = natnode.next_sibling("Nation"))
   {
     int teamno = (std::string(natnode.child("TeamNo").child_value()) == "") ? 0 : std::stoi(natnode.child("TeamNo").child_value());
