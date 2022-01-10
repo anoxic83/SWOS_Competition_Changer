@@ -73,7 +73,7 @@ Warning! More than 2 division by nation is not supported yet.
       <Teams>18</Teams>
       <Promoted>3</Promoted>
       <PromPlayOff>0</PromPlayOff>
-      <Relegated>3</Relegated>
+      <Relegated>0</Relegated>
       <RelPlayOff>0</RelPlayOff>
     </Division>
     <!-- 
@@ -111,6 +111,10 @@ Warning! More than 2 division by nation is not supported yet.
 ```
 ---
 # Change Log
+**v0.3.4b**
+- Update wrapper to SWOS 2020 v3.2.1
+- Fix working on linux wine
+
 **v0.3.3b**
 - Update wrapper to SWOS 2020 v3.0.17
 

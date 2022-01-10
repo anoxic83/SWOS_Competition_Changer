@@ -3,9 +3,6 @@
 #include <pugixml.hpp>
 #include "swoshook.h"
 
-
-
-
 //const intptr_t CompStructPtr = 0x4768456; 
 //const intptr_t CompStructPtr = 0x476A456;
 //const intptr_t CompStructPtr = 0x476D456;
@@ -15,7 +12,7 @@
 const char* headch = "SWSCC";
 
 const char* info = R"(
-SWOS Competition Changer ver.0.3.3b
+SWOS Competition Changer ver.0.3.4b
 Author: AnoXic
 ------------------------------------
 Info: This file is plugin to SWOS.
@@ -26,19 +23,22 @@ SWSCompetitionChanger::SWSCompetitionChanger(const std::string& filename)
 {
   //MessageBoxA(NULL, "SWSCC Plugin sucessfull executed", "SWSCC", MB_OK);
   //
+  printf("[SWSCC.ASI]:: Loading xml file: <%s>\n", filename.c_str());
   pugi::xml_document doc;
-  doc.load_file(m_Filename.c_str());
+  if (!doc.load_file(m_Filename.c_str()))
+  {
+    printf("[SWSCC.ASI]:: Failed to load <%s>\n", filename.c_str());
+  }
   std::vector<char> header(5);
   std::memcpy(reinterpret_cast<void*>(&header[0]), headch, 5);
   m_Data.clear();
   m_Data.insert(m_Data.begin(), header.begin(), header.end());
   m_CompAddrPairs.clear();
   
+  printf("[SWSCC.ASI]:: Searching for pattern data...\n");
   uintptr_t comptable;
   SWOSHook::ReadMemory(SWOSHook::GetCompetitionTablePtr(), &comptable, 4);
-  //char msgtxt[255];
-  //sprintf(msgtxt, "Competition Address Ptr: 0x%p", SWOSHook::GetCompetitionTablePtr());
-  //MessageBoxA(NULL, msgtxt, "SWSASI", MB_OK);
+  printf("[SWSCC.ASI]:: Competition Table at: 0x%p\n", SWOSHook::GetCompetitionTablePtr());
   for (pugi::xml_node natnode = doc.child("Nation"); natnode; natnode = natnode.next_sibling("Nation"))
   {
     int teamno = (std::string(natnode.child("TeamNo").child_value()) == "") ? 0 : std::stoi(natnode.child("TeamNo").child_value());

@@ -25,20 +25,30 @@ SOFTWARE.
 
 */
 #include <windows.h>
+#include <DbgHelp.h>
 #include <cstdint>
 #include <string>
 #include <sstream>
 #include <functional>
+
+struct SWOSRegisters
+{
+  uint32_t D[8];
+  uint32_t A[7];
+};
 
 class SWOSHook
 {
 private:
   static uintptr_t m_BaseAddress;
   static uintptr_t m_CompetitionTablePtr;
+  static uintptr_t m_DSegPtr;
 public:
   static void Init();
   static uintptr_t GetBaseAddress();
   static uintptr_t GetCompetitionTablePtr();
+  static uintptr_t GetDSegDataPtr();
+  static SWOSRegisters* GetSWOSRegisters();
   static uintptr_t FindInMemory(void* data, size_t sizeofdata);
   static bool WriteMemory(uintptr_t address, void* value, size_t size);
   static bool ReadMemory(uintptr_t address, void* value, size_t size);

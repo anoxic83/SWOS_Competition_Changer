@@ -1,11 +1,18 @@
 #include "swoshook.h"
 
+  // const data     //4EA5000
+  const uintptr_t cSWOSRegPtr = 0x2FD77;
+  const uintptr_t cCompTablePtr = 0x7426;
+
   uintptr_t SWOSHook::m_BaseAddress = 0;
   uintptr_t SWOSHook::m_CompetitionTablePtr = 0;
+  uintptr_t SWOSHook::m_DSegPtr = 0;
 
   void SWOSHook::Init()
   {
     GetBaseAddress();
+    GetDSegDataPtr();
+    //printf("[SWSHOOK]:: Base Address: 0x%p\n", m_BaseAddress);
   }
 
   uintptr_t SWOSHook::GetBaseAddress()
@@ -15,8 +22,34 @@
     return m_BaseAddress;
   }
 
+  uintptr_t SWOSHook::GetDSegDataPtr()
+  {
+    if (m_DSegPtr == 0)
+    {
+      IMAGE_DOS_HEADER*  dos = (IMAGE_DOS_HEADER*)(m_BaseAddress);
+      IMAGE_NT_HEADERS*  nt = (IMAGE_NT_HEADERS*)(m_BaseAddress + dos->e_lfanew);
+      IMAGE_SECTION_HEADER *pSectionHdr = (IMAGE_SECTION_HEADER *)(nt + 1);
+      for (int scn = 0; scn < nt->FileHeader.NumberOfSections; scn++)
+      {
+        if (strncmp((const char*)pSectionHdr->Name, "dseg", 8) == 0)
+        {
+          m_DSegPtr = pSectionHdr->VirtualAddress;
+          m_DSegPtr += m_BaseAddress;
+        }
+        ++pSectionHdr;
+      }
+    }
+    return m_DSegPtr;
+  }
+
+  SWOSRegisters* SWOSHook::GetSWOSRegisters()
+  {
+    return (SWOSRegisters*)(m_DSegPtr + cSWOSRegPtr);
+  }
+
   uintptr_t SWOSHook::GetCompetitionTablePtr()
   {
+    /*
     if (m_CompetitionTablePtr == 0)
     {
       const uint8_t data[] = {0xAA, 0xAA, 0x02, 0x00, 0xee, 0xee, 0x02, 0x00};
@@ -28,6 +61,8 @@
       m_CompetitionTablePtr = cta+8;
     }
     return m_CompetitionTablePtr;
+    */
+    return m_DSegPtr + cCompTablePtr;
   }
 
   uintptr_t SWOSHook::FindInMemory(void* data, size_t sizeofdata)
