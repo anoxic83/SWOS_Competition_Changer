@@ -12,7 +12,8 @@
 const char* headch = "SWSCC";
 
 const char* info = R"(
-SWOS Competition Changer ver.0.3.4b
+SWOS Competition Changer ver.0.3.5b
+SWOS Port32 Version 4.1.1 Compatibile
 Author: AnoXic
 ------------------------------------
 Info: This file is plugin to SWOS.
@@ -132,9 +133,9 @@ SWSCompetitionChanger::SWSCompetitionChanger(const std::string& filename)
     uintptr_t newaddress = addr.second + reinterpret_cast<uintptr_t>(&(m_Data[0]));
     SWOSHook::WriteMemory(addr.first, &newaddress, 4);
   }
-  std::ofstream ofs("___XTEX.DTT", std::ios::binary);
-  ofs.write((char*)&m_Data[0], m_Data.size());
-  ofs.close();
+  //std::ofstream ofs("___XTEX.DTT", std::ios::binary);
+  //ofs.write((char*)&m_Data[0], m_Data.size());
+  //ofs.close();
 }
 
 void ShowInfo()

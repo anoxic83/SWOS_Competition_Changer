@@ -49,7 +49,7 @@ Warning! More than 2 division by nation is not supported yet.
 
 ```xml
 <?xml version = "1.0" encoding = "UTF-8" ?>
-<!--  SWOS Competition Changer v.0.3.1b -->
+<!--  SWOS Competition Changer v.0.3.5b -->
 <!--  Author: AnoXic -->
 
 <Nation>
@@ -110,7 +110,10 @@ Warning! More than 2 division by nation is not supported yet.
 -->
 ```
 ---
-# Change Log
+# Changes Log
+**v0.3.5b**
+- Update wrapper to SWOS 2020 v4.1.1
+
 **v0.3.4b**
 - Update wrapper to SWOS 2020 v3.2.1
 - Fix working on linux wine

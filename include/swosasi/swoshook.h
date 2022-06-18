@@ -46,8 +46,11 @@ private:
 public:
   static void Init();
   static uintptr_t GetBaseAddress();
+  //* Get address of League/Cup Competition pointers
   static uintptr_t GetCompetitionTablePtr();
+  //* Get start address of DSeg (DOS4GW original SWOS data segment)
   static uintptr_t GetDSegDataPtr();
+  //* Get Access to Sensible World of Soccer internal registers (Data [8 * 32bit] and Address [7 * 32bit] <Virtual M68k regs>)
   static SWOSRegisters* GetSWOSRegisters();
   static uintptr_t FindInMemory(void* data, size_t sizeofdata);
   static bool WriteMemory(uintptr_t address, void* value, size_t size);

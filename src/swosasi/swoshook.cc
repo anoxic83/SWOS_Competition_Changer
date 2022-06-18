@@ -1,8 +1,10 @@
 #include "swoshook.h"
 
+
+  // SWOS 2020 ver 4.1.1
   // const data     //4EA5000
-  const uintptr_t cSWOSRegPtr = 0x2FD77;
-  const uintptr_t cCompTablePtr = 0x7426;
+  const uintptr_t cSWOSRegPtr = 0x31497;
+  const uintptr_t cCompTablePtr = 0x8B46;
 
   uintptr_t SWOSHook::m_BaseAddress = 0;
   uintptr_t SWOSHook::m_CompetitionTablePtr = 0;
