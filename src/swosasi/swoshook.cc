@@ -1,8 +1,9 @@
 #include "swoshook.h"
 
 
-  // SWOS 2020 ver 4.1.1
+  // SWOS 2020 ver 4.1.2
   // const data     //4EA5000
+
   const uintptr_t cSWOSRegPtr = 0x31497;
   const uintptr_t cCompTablePtr = 0x8B46;
 
@@ -154,11 +155,11 @@
     }
   }
 
-  bool SWOSHook::MakeCall(uintptr_t relative, void* func)
+  bool SWOSHook::MakeCall(uintptr_t address, void* func)
 	{
-		uint32_t funct = ((reinterpret_cast<uint32_t>(func)) - (relative + 5));
+		uint32_t funct = ((reinterpret_cast<uint32_t>(func)) - (address + 5));
     bool ret = false;
-		ret = SetMemory(relative, 0xe8, 1);
-		ret = WriteMemory(relative + 1, &funct, 4);
+		ret = SetMemory(address, 0xe8, 1);
+		ret = WriteMemory(address + 1, &funct, 4);
     return ret;
 	}

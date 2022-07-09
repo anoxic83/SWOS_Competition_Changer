@@ -2,6 +2,8 @@
 #include <cstring>
 #include <pugixml.hpp>
 #include "swoshook.h"
+#define SWSLOG_IMPLEMENTATION
+#include "swslog.h"
 
 //const intptr_t CompStructPtr = 0x4768456; 
 //const intptr_t CompStructPtr = 0x476A456;
@@ -12,8 +14,8 @@
 const char* headch = "SWSCC";
 
 const char* info = R"(
-SWOS Competition Changer ver.0.3.5b
-SWOS Port32 Version 4.1.1 Compatibile
+SWOS Competition Changer ver.0.3.6b
+SWOS Port32 Version 4.1.2 Compatibile
 Author: AnoXic
 ------------------------------------
 Info: This file is plugin to SWOS.
@@ -24,11 +26,13 @@ SWSCompetitionChanger::SWSCompetitionChanger(const std::string& filename)
 {
   //MessageBoxA(NULL, "SWSCC Plugin sucessfull executed", "SWSCC", MB_OK);
   //
-  printf("[SWSCC.ASI]:: Loading xml file: <%s>\n", filename.c_str());
+  //printf("[SWSCC.ASI]:: Loading xml file: <%s>\n", filename.c_str());
+  log_init(LOG_LEV_INFO, "plugins/swscc.log");
+  log_info("[SWSCC.ASI] => Loading XML file: %s", filename.c_str());
   pugi::xml_document doc;
   if (!doc.load_file(m_Filename.c_str()))
   {
-    printf("[SWSCC.ASI]:: Failed to load <%s>\n", filename.c_str());
+    log_error("[SWSCC.ASI] => Failed to load <%s", filename.c_str());
   }
   std::vector<char> header(5);
   std::memcpy(reinterpret_cast<void*>(&header[0]), headch, 5);
@@ -36,15 +40,16 @@ SWSCompetitionChanger::SWSCompetitionChanger(const std::string& filename)
   m_Data.insert(m_Data.begin(), header.begin(), header.end());
   m_CompAddrPairs.clear();
   
-  printf("[SWSCC.ASI]:: Searching for pattern data...\n");
+  //printf("[SWSCC.ASI]:: Searching for pattern data...\n");
   uintptr_t comptable;
   SWOSHook::ReadMemory(SWOSHook::GetCompetitionTablePtr(), &comptable, 4);
-  printf("[SWSCC.ASI]:: Competition Table at: 0x%p\n", SWOSHook::GetCompetitionTablePtr());
+  log_info("[SWSCC.ASI] => Competition Table at: 0x%p", SWOSHook::GetCompetitionTablePtr());
   for (pugi::xml_node natnode = doc.child("Nation"); natnode; natnode = natnode.next_sibling("Nation"))
   {
     int teamno = (std::string(natnode.child("TeamNo").child_value()) == "") ? 0 : std::stoi(natnode.child("TeamNo").child_value());
     if (teamno > -1)
     {
+      log_info("[SWSCC.ASI] => Nation TeamNo: %d", teamno);
       pugi::xml_node legnode = natnode.child("League");
       SWSLeagueStr tmpc = {0,0,0,0,0,0,0,0,0,0,0,0,0};
       tmpc.CompType = SWSC_LEAGUE;

@@ -56,5 +56,10 @@ public:
   static bool WriteMemory(uintptr_t address, void* value, size_t size);
   static bool ReadMemory(uintptr_t address, void* value, size_t size);
   static bool SetMemory(uintptr_t address, uint8_t value, size_t size);
-  static bool MakeCall(uintptr_t relative, void* func);
+  static bool MakeCall(uintptr_t address, void* func);
+  template<typename Ret>
+  static Ret CallSWOS(uintptr_t address)
+  {
+    return ((Ret (__cdecl *)(void))address)();
+  }
 };
