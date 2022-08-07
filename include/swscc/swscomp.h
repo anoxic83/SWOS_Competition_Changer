@@ -50,7 +50,7 @@ struct SWSDivision
 	uint8_t PromPlayOff;
 	uint8_t Relegated;
 	uint8_t RelPlayOff;
-	uint8_t Res0;
+	uint8_t Res0;					// Relative to PlayOff
 };
 
 struct SWSComp
@@ -65,6 +65,19 @@ struct SWSComp
 	uint8_t Res2;
 	uint8_t Res3;
 	// SWSLeague or SWSCup
+};
+
+struct SWSCompGetTeams
+{
+	SWSComp* Competition;
+	uint8_t Division;
+	uint8_t Res0;
+	uint8_t Res1;
+	uint8_t Res2;
+	uint8_t TeamNumber;				// Relative play-off team no // 0 - first team to qual. in play-off	
+	uint8_t Res1_0;
+	uint8_t Res1_1;
+	uint8_t Res1_2;	
 };
 
 struct SWSLeagueStr : public SWSComp

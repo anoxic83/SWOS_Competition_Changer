@@ -111,6 +111,9 @@ Warning! More than 2 division by nation is not supported yet.
 ```
 ---
 # Changes Log
+**v0.3.7b**
+- Update to SWOS 2020 v4.1.4
+
 **v0.3.6b**
 - Update SWOSHook functions.
 - Add logging to file
