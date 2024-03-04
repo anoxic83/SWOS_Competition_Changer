@@ -3,6 +3,12 @@
 Autor: AnoXic
 Plugin for SWOS to enable more divisions in any country. Extra wrapper to load any custom plugins.
 
+# Donations
+
+Support the author of the project with a donation:
+
+[![paypal](https://www.paypalobjects.com/en_US/PL/i/btn/btn_donateCC_LG.gif)](https://www.paypal.com/donate?cmd=_s-xclick&hosted_button_id=F5S9HP7H8QDEY)
+
 ---
 # SWOS-Win32-ASI
 SWOS-Win32-ASI is a framework to create patches to **Sensible World of Soccer** version Windows 32-bit port.
@@ -111,6 +117,9 @@ Warning! More than 2 division by nation is not supported yet.
 ```
 ---
 # Changes Log
+**v0.3.8b**
+- Update to SWOS 2020 v6.3.7
+
 **v0.3.7b**
 - Update to SWOS 2020 v4.1.4
 

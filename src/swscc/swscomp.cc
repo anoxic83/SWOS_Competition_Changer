@@ -14,8 +14,8 @@
 const char* headch = "SWSCC";
 
 const char* info = R"(
-SWOS Competition Changer ver.0.3.7b
-SWOS Port32 Version 4.1.4 Compatibile
+SWOS Competition Changer ver.0.3.8b
+SWOS Port32 Version 6.3.7 Compatibile
 Author: AnoXic
 ------------------------------------
 Info: This file is plugin to SWOS.

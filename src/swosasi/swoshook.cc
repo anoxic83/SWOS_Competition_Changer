@@ -4,8 +4,10 @@
   // SWOS 2020 ver 4.1.2
   // const data     //4EA5000
 
-  const uintptr_t cSWOSRegPtr = 0x31497;
-  const uintptr_t cCompTablePtr = 0x8B46;
+  // 0x54dc000 + 31497
+
+  const uintptr_t cSWOSRegPtr = 0x31487;
+  const uintptr_t cCompTablePtr = 0x8B36;
 
   uintptr_t SWOSHook::m_BaseAddress = 0;
   uintptr_t SWOSHook::m_CompetitionTablePtr = 0;
