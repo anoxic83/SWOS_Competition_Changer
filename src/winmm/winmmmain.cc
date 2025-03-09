@@ -43,9 +43,9 @@ void Init()
 	auto hwSWOS = (uintptr_t)GetModuleHandle(NULL);
 	IMAGE_DOS_HEADER*  dos = (IMAGE_DOS_HEADER*)(hwSWOS);
 	IMAGE_NT_HEADERS*  nt = (IMAGE_NT_HEADERS*)(hwSWOS + dos->e_lfanew);
-	if (nt->OptionalHeader.AddressOfEntryPoint != 0x149081)		// Check the swos-port-release executable version
+	if (nt->OptionalHeader.AddressOfEntryPoint != 0x1B86DB)		// Check the swos-port-release executable version
 	{
-    if (MessageBoxA(NULL, "Not valid version of SWOS executable. Supported version: 6.3.7\nContinue anyway?", "ASI Loader v0.4.2b", MB_YESNO + MB_ICONASTERISK) == IDYES)
+    if (MessageBoxA(NULL, "Not valid version of SWOS executable. Supported version: 7.7.1\nContinue anyway?", "ASI Loader v0.4.3b", MB_YESNO + MB_ICONASTERISK) == IDYES)
     {
 		  LoadPlugin();
     }

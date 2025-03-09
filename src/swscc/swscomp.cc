@@ -11,10 +11,16 @@
 //const intptr_t CompStructPtr = 0x476F456;
 //const intptr_t CompStructPtr = 0x477A95A;
 //uintptr_t CompStructPtr = 0x4924456;
+
+//cseg_9487A <=== pdb func name
+const uintptr_t ptr_PatchJMP001 = 0x5CF51C - 0x400000;
+const uintptr_t ptr_PatchJMP002 = 0x5CF5BC - 0x400000;
+
+
 const char* headch = "SWSCC";
 
 const char* info = R"(
-SWOS Competition Changer ver.0.3.8b
+SWOS Competition Changer ver.0.4.0b
 SWOS Port32 Version 6.3.7 Compatibile
 Author: AnoXic
 ------------------------------------
@@ -24,6 +30,9 @@ Info: This file is plugin to SWOS.
 SWSCompetitionChanger::SWSCompetitionChanger(const std::string& filename)
 : m_Filename(filename)
 {
+  // Fix the limit (2 div max), changing jz to jmp (after int3)
+  SWOSHook::SetMemory(ptr_PatchJMP001 + SWOSHook::GetBaseAddress(), 0xeb, 1);
+  SWOSHook::SetMemory(ptr_PatchJMP002 + SWOSHook::GetBaseAddress(), 0xeb, 1);
   //MessageBoxA(NULL, "SWSCC Plugin sucessfull executed", "SWSCC", MB_OK);
   //
   //printf("[SWSCC.ASI]:: Loading xml file: <%s>\n", filename.c_str());

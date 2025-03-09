@@ -1,7 +1,7 @@
 #include "swoshook.h"
 
 
-  // SWOS 2020 ver 4.1.2
+  // SWOS 2020 ver 7.7.1
   // const data     //4EA5000
 
   // 0x54dc000 + 31497

@@ -51,8 +51,6 @@ Unpack 7z file and copy all files from folder swos to directory where is swos-po
 # Configuration
 To configuration competition use swscc.xml located in plugins folder.
 
-Warning! More than 2 division by nation is not supported yet.
-
 ```xml
 <?xml version = "1.0" encoding = "UTF-8" ?>
 <!--  SWOS Competition Changer v.0.3.5b -->
@@ -63,7 +61,7 @@ Warning! More than 2 division by nation is not supported yet.
   <League>															<!-- Start League Section -->
     <BeginMonth>8</BeginMonth>					
     <EndMonth>5</EndMonth>
-    <Divisions>2</Divisions>						<!-- No of divisions (yet max. 2) -->
+    <Divisions>2</Divisions>						
     <Rounds>2</Rounds>									
     <PtsForWin>3</PtsForWin>
     <Substitutes>3</Substitutes>
@@ -117,6 +115,10 @@ Warning! More than 2 division by nation is not supported yet.
 ```
 ---
 # Changes Log
+**v0.4.0b**
+- Fixed problem with two division by country limit
+- Update to SWOS 2020 v7.7.1
+
 **v0.3.8b**
 - Update to SWOS 2020 v6.3.7
 
